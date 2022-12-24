@@ -6,6 +6,11 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<PlatformTarget>x64</PlatformTarget>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\TheLeftExit.Memory.Win32\TheLeftExit.Memory.Win32.csproj" />
+	</ItemGroup>
 
 </Project>

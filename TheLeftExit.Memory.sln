@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLeftExit.Memory", "TheLeftExit.Memory\TheLeftExit.Memory.csproj", "{692F1B5A-A96A-49E4-A95B-4DC8172D71F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trickster", "Trickster\Trickster.csproj", "{F74FCCA5-17F9-4D5F-9BA0-71FB5ABF91FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trickster", "Trickster\Trickster.csproj", "{F74FCCA5-17F9-4D5F-9BA0-71FB5ABF91FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheLeftExit.Memory.Win32", "TheLeftExit.Memory.Win32\TheLeftExit.Memory.Win32.csproj", "{96F73396-DACE-4F2A-B2D8-C79388CC1812}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,14 @@ Global
 		{F74FCCA5-17F9-4D5F-9BA0-71FB5ABF91FA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F74FCCA5-17F9-4D5F-9BA0-71FB5ABF91FA}.Release|x64.ActiveCfg = Release|Any CPU
 		{F74FCCA5-17F9-4D5F-9BA0-71FB5ABF91FA}.Release|x64.Build.0 = Release|Any CPU
+		{96F73396-DACE-4F2A-B2D8-C79388CC1812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96F73396-DACE-4F2A-B2D8-C79388CC1812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96F73396-DACE-4F2A-B2D8-C79388CC1812}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{96F73396-DACE-4F2A-B2D8-C79388CC1812}.Debug|x64.Build.0 = Debug|Any CPU
+		{96F73396-DACE-4F2A-B2D8-C79388CC1812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96F73396-DACE-4F2A-B2D8-C79388CC1812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96F73396-DACE-4F2A-B2D8-C79388CC1812}.Release|x64.ActiveCfg = Release|Any CPU
+		{96F73396-DACE-4F2A-B2D8-C79388CC1812}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

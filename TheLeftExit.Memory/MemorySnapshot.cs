@@ -25,7 +25,7 @@ public unsafe sealed class MemorySnapshot : IReadOnlyMemorySource, IDisposable
     {
         if(byteCount > uint.MaxValue)
         {
-            throw new NotSupportedException();
+            return false;
         }
         nuint newAddress = MathHelper.Translate(address, _baseAddress, (nuint)_pointer);
         if (!MathHelper.CheckBounds(newAddress, byteCount, (nuint)_pointer, _size))

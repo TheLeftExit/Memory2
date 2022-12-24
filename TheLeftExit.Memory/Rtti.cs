@@ -27,7 +27,7 @@ public abstract class RttiClassNameProviderBase
         buffer[0] = (byte)'?';
         if (!_source.TryRead((nuint)address, BUFFER_SIZE - 1, buffer + 1)) return null;
         byte* target = stackalloc byte[BUFFER_SIZE];
-        uint len = NativeMethods.UnDecorateSymbolName(buffer, target, BUFFER_SIZE, 0x1800);
+        uint len = DllImport.UnDecorateSymbolName(buffer, target, BUFFER_SIZE, 0x1800);
         return len != 0 ? Encoding.UTF8.GetString(target, (int)len) : null;
     }
 }
