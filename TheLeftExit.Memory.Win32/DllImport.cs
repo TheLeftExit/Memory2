@@ -37,7 +37,6 @@ public unsafe class DllImport
     [DllImport("Kernel32")]
     public static extern nuint VirtualQueryEx(HANDLE hProcess, nuint lpAddress, MEMORY_BASIC_INFORMATION* lpBuffer, nuint dwLength);
 
-
     [DllImport("Kernel32")]
     public static extern HANDLE CreateToolhelp32Snapshot(CREATE_TOOLHELP_SNAPSHOT_FLAGS dwFlags, uint th32ProcessID);
 
