@@ -7,7 +7,7 @@
         _handle = handle;
     }
 
-    public unsafe bool TryRead(nuint address, nuint count, void* buffer)
+    public bool TryRead(nuint address, nuint count, void* buffer)
     {
         return DllImport.ReadProcessMemory(_handle, address, buffer, count);
     }

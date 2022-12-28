@@ -1,4 +1,6 @@
-﻿public readonly record struct HANDLE(IntPtr Handle)
+﻿using System.Runtime.InteropServices;
+
+public readonly record struct HANDLE(IntPtr Handle)
 {
     public bool IsNull => Handle == IntPtr.Zero;
 }

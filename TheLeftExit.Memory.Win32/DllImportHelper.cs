@@ -1,11 +1,10 @@
-﻿using System.Net.NetworkInformation;
-using System.Text;
+﻿using System.Text;
+
+public readonly record struct MemoryRegionInfo(nuint BaseAddress, nuint Size);
+public readonly record struct ProcessInfo(uint ProcessId, string ProcessName);
 
 public static unsafe class DllImportHelper
 {
-    public readonly record struct MemoryRegionInfo(nuint BaseAddress, nuint Size);
-    public readonly record struct ProcessInfo(uint ProcessId, string ProcessName);
-
     // todo: check if can be made easier with https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/nf-ntifs-zwqueryvirtualmemory
     public static MemoryRegionInfo[] GetMemoryRegions(HANDLE handle, bool is32Bit)
     {
@@ -15,9 +14,7 @@ public static unsafe class DllImportHelper
         List<MemoryRegionInfo> list = new();
         nuint address = 0;
 
-        MEMORY_BASIC_INFORMATION mbi;
-
-        while (address < stop && DllImport.VirtualQueryEx(handle, address, &mbi, size) > 0 && address + mbi.RegionSize > address)
+        while (address < stop && DllImport.VirtualQueryEx(handle, address, out var mbi, size) > 0 && address + mbi.RegionSize > address)
         {
             if (mbi.State == VIRTUAL_ALLOCATION_TYPE.MEM_COMMIT &&
                 !mbi.Protect.HasFlag(PAGE_PROTECTION_FLAGS.PAGE_NOACCESS) &&
@@ -39,7 +36,7 @@ public static unsafe class DllImportHelper
         }
         var processEntry = new PROCESSENTRY32();
         processEntry.dwSize = (uint)sizeof(PROCESSENTRY32);
-        if(!DllImport.Process32First(snapshotHandle, &processEntry))
+        if(!DllImport.Process32First(snapshotHandle, ref processEntry))
         {
             throw new ApplicationException();
         }
@@ -56,7 +53,7 @@ public static unsafe class DllImportHelper
 
             list.Add(new(processId, processName));
         }
-        while (DllImport.Process32Next(snapshotHandle, &processEntry));
+        while (DllImport.Process32Next(snapshotHandle, ref processEntry));
 
         DllImport.CloseHandle(snapshotHandle);
 
@@ -72,7 +69,7 @@ public static unsafe class DllImportHelper
         }
         var moduleEntry = new MODULEENTRY32();
         moduleEntry.dwSize = (uint)sizeof(MODULEENTRY32);
-        if (!DllImport.Module32First(snapshotHandle, &moduleEntry))
+        if (!DllImport.Module32First(snapshotHandle, ref moduleEntry))
         {
             return default;
         }
