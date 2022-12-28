@@ -1,5 +1,5 @@
 ﻿[Flags]
-public enum PAGE_PROTECTION_FLAGS : uint
+internal enum PAGE_PROTECTION_FLAGS : uint
 {
     PAGE_NOACCESS = 0x00000001,
     PAGE_READONLY = 0x00000002,
@@ -43,7 +43,7 @@ public enum PAGE_PROTECTION_FLAGS : uint
 }
 
 [Flags]
-public enum VIRTUAL_ALLOCATION_TYPE : uint
+internal enum VIRTUAL_ALLOCATION_TYPE : uint
 {
     MEM_COMMIT = 0x00001000,
     MEM_RESERVE = 0x00002000,
@@ -56,14 +56,14 @@ public enum VIRTUAL_ALLOCATION_TYPE : uint
 }
 
 [Flags]
-public enum PAGE_TYPE : uint
+internal enum PAGE_TYPE : uint
 {
     MEM_PRIVATE = 0x00020000,
     MEM_MAPPED = 0x00040000,
     MEM_IMAGE = 0x01000000,
 }
 [Flags]
-public enum PROCESS_ACCESS_RIGHTS : uint
+internal enum PROCESS_ACCESS_RIGHTS : uint
 {
     PROCESS_TERMINATE = 0x00000001,
     PROCESS_CREATE_THREAD = 0x00000002,
@@ -89,7 +89,7 @@ public enum PROCESS_ACCESS_RIGHTS : uint
 }
 
 [Flags]
-public enum CREATE_TOOLHELP_SNAPSHOT_FLAGS : uint
+internal enum CREATE_TOOLHELP_SNAPSHOT_FLAGS : uint
 {
     TH32CS_INHERIT = 0x80000000,
     TH32CS_SNAPALL = 0x0000000F,

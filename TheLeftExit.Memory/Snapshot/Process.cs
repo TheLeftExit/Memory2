@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-public unsafe sealed class ProcessSnapshot : IReadOnlyMemorySource, IDisposable
+public sealed class ProcessSnapshot : IReadOnlyMemorySource, IDisposable
 {
     private readonly ImmutableDictionary<nuint, MemorySnapshot> _snapshotsByBaseAddress;
     private readonly ImmutableArray<nuint> _sortedBaseAddresses;
@@ -24,7 +24,7 @@ public unsafe sealed class ProcessSnapshot : IReadOnlyMemorySource, IDisposable
         _maxAddress = _sortedSnapshots[^1].BaseAddress + _sortedSnapshots[^1].Size;
     }
 
-    public bool TryRead(nuint address, nuint byteCount, void* buffer)
+    public unsafe bool TryRead(nuint address, nuint byteCount, void* buffer)
     {
         if(!SnapshotHelper.CheckBoundsMinMax(address, byteCount, _minAddress, _maxAddress))
         {

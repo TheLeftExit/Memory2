@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLeftExit.Memory", "TheLe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trickster", "Trickster\Trickster.csproj", "{F74FCCA5-17F9-4D5F-9BA0-71FB5ABF91FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheLeftExit.Memory.Win32", "TheLeftExit.Memory.Win32\TheLeftExit.Memory.Win32.csproj", "{96F73396-DACE-4F2A-B2D8-C79388CC1812}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheLeftExit.Memory.Win32", "TheLeftExit.Memory.Win32\TheLeftExit.Memory.Win32.csproj", "{96F73396-DACE-4F2A-B2D8-C79388CC1812}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

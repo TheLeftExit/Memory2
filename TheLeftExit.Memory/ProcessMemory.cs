@@ -1,19 +1,19 @@
-﻿public unsafe sealed class ProcessMemory : IMemorySource
+﻿public class ProcessMemory : IMemorySource
 {
-    private readonly HANDLE _handle;
+    private ProcessHandle _handle;
 
-    public ProcessMemory (HANDLE handle)
+    public ProcessMemory(ProcessHandle handle)
     {
         _handle = handle;
     }
 
-    public bool TryRead(nuint address, nuint count, void* buffer)
+    public unsafe bool TryRead(nuint address, nuint byteCount, void* buffer)
     {
-        return DllImport.ReadProcessMemory(_handle, address, buffer, count);
+        return _handle.TryRead(address, byteCount, buffer);
     }
 
-    public unsafe bool TryWrite(nuint address, nuint count, void* buffer)
+    public unsafe bool TryWrite(nuint address, nuint byteCount, void* buffer)
     {
-        return DllImport.WriteProcessMemory(_handle, address, buffer, count);
+        return _handle.TryWrite(address, byteCount, buffer);
     }
 }

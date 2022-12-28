@@ -1,7 +1,7 @@
-﻿using System.Runtime.CompilerServices;
-
-public struct MEMORY_BASIC_INFORMATION
+﻿internal unsafe struct MEMORY_BASIC_INFORMATION
 {
+    public static readonly nuint SIZE = (nuint)sizeof(MEMORY_BASIC_INFORMATION);
+
     public nuint BaseAddress;
     public nuint AllocationBase;
     public PAGE_PROTECTION_FLAGS AllocationProtect;
@@ -12,7 +12,7 @@ public struct MEMORY_BASIC_INFORMATION
     public PAGE_TYPE Type;
 }
 
-public unsafe struct PROCESSENTRY32
+internal unsafe struct PROCESSENTRY32W
 {
     public uint dwSize;
     public uint cntUsage;
@@ -23,10 +23,14 @@ public unsafe struct PROCESSENTRY32
     public uint th32ParentProcessID;
     public int pcPriClassBase;
     public uint dwFlags;
-    public fixed byte szExeFile[260];
+    public fixed char szExeFile[260];
+
+    public static PROCESSENTRY32W Create() => new PROCESSENTRY32W { dwSize = (uint)sizeof(PROCESSENTRY32W) };
+
+    public string szExeFile_ToString() { fixed (char* ptr = szExeFile) return new(ptr, 0, 260); }
 }
 
-public unsafe struct MODULEENTRY32
+internal unsafe struct MODULEENTRY32W
 {
     public uint dwSize;
     public uint th32ModuleID;
@@ -35,7 +39,9 @@ public unsafe struct MODULEENTRY32
     public uint ProccntUsage;
     public nuint modBaseAddr;
     public uint modBaseSize;
-    public HANDLE hModule;
+    public IntPtr hModule;
     public fixed char szModule[256];
     public fixed char szExePath[260];
+
+    public static MODULEENTRY32W Create() => new MODULEENTRY32W { dwSize = (uint)sizeof(MODULEENTRY32W) };
 }

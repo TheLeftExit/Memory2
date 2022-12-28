@@ -1,15 +1,28 @@
-﻿using System.Runtime.InteropServices;
-using System.Text;
+﻿using System.Diagnostics;
 
 public unsafe class Program
 {
     public static void Main(string[] args)
     {
-        var processInfo = DllImportHelper.GetProcesses().Single(x => x.ProcessName.Contains("Frontiers"));
-        var process = new Process(processInfo, PROCESS_ACCESS_RIGHTS.PROCESS_ALL_ACCESS);
-        var mainModuleInfo = process.MainModule;
+        var process = Process.GetProcesses().Single(x => x.Name.Contains("Frontiers"));
 
-        var snapshot = new MemorySnapshot(process.Memory, mainModuleInfo.BaseAddress, mainModuleInfo.Size);
+        GetAllTypes(process); 
+    }
+
+    public static void GetAllRegions(Process process)
+    {
+        var regions = process.GetMemoryRegions();
+
+        Debugger.Break();
+    }
+
+    public static void GetAllTypes(Process process)
+    {
+        using var handle = process.OpenHandle();
+
+        var memory = new ProcessMemory(handle);
+        var mainModuleInfo = process.MainModule;
+        var snapshot = new MemorySnapshot(memory, mainModuleInfo.BaseAddress, mainModuleInfo.Size);
         List<(string Name, nuint Address, nuint Offset)> typeList = new();
 
         IClassNameProvider classNameProvider = process.Is32Bit ? new Rtti32ClassNameProvider(snapshot) : new Rtti64ClassNameProvider(snapshot);
@@ -22,6 +35,6 @@ public unsafe class Program
             }
         }
 
-        ;
+        Debugger.Break();
     }
 }
